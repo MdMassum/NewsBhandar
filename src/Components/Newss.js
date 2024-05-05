@@ -38,21 +38,41 @@ export class Newss extends Component {
         console.log("I am constructor");
         this.state = {
           articles: [],
-          loading:false
+          loading:false,
+          page:1
         }
     }
     
     async componentDidMount(){
-    
-        let URL = "https://newsapi.org/v2/top-headlines?country=in&apiKey=9476293ec7554b0aab4cc02acb02b670";
+
+        let URL = "https://newsapi.org/v2/top-headlines?country=in&apiKey=9476293ec7554b0aab4cc02acb02b670&page=1&pagesize=18";
+        let data =await fetch(URL);
+        let parsedata = await data.json();
+        console.log(parsedata);
+        this.setState({articles:parsedata.articles,
+        totalResults:parsedata.totalResults});
+        // console.log(parsedata.totalResults);
+        
+    }
+    handlePrevClick= async()=>{
+
+        this.state.page = this.state.page - 1;
+        let URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9476293ec7554b0aab4cc02acb02b670&page=${this.state.page}&pagesize=18`;
         let data =await fetch(URL);
         let parsedata = await data.json();
         console.log(parsedata);
         this.setState({articles:parsedata.articles});
-        
+    }
+    handleNexClick= async()=>{
+
+        this.state.page = this.state.page + 1;
+        let URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9476293ec7554b0aab4cc02acb02b670&page=${this.state.page}&pagesize=18`;
+        let data =await fetch(URL);
+        let parsedata = await data.json();
+        console.log(parsedata);
+        this.setState({articles:parsedata.articles});
     }
 
-    
   render() {
     return (
         <div className="container my-3 mx-4">
@@ -67,6 +87,10 @@ export class Newss extends Component {
 
                     </div>
             }))};
+            </div>
+            <div className="container d-flex justify-content-between">
+            <button disabled={this.state.page <= 1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}>&larr; Previous</button>
+            <button disabled={this.state.page*18 >= Math.ceil(this.state.totalResults)} type="button" className="btn btn-dark" onClick={this.handleNexClick}>Next &rarr;</button>
             </div>
         </div>
     )
