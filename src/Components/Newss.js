@@ -2,10 +2,20 @@ import React, { Component } from 'react'
 // import {useEffect, useState} from 'react'
 import NewsItem from './NewsItem'
 import Spinners from './Spinners';
+import Proptypes from 'prop-types'
 
 export class Newss extends Component {
 
-    
+    static defaultProps = {
+        country:'in',
+        pageSize:9,
+        category:'general'
+    }
+    static propTypes ={
+        country:Proptypes.string,
+        pageSize:Proptypes.number,
+        category:Proptypes.string
+    }
 
     constructor(){
         super();
@@ -19,7 +29,7 @@ export class Newss extends Component {
     
     async componentDidMount(){
         
-        let URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9476293ec7554b0aab4cc02acb02b670&page=1&pagesize=${this.props.pageSize}`;
+        let URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9476293ec7554b0aab4cc02acb02b670&page=1&pagesize=${this.props.pageSize}`;
 
         //for loading 
         this.setState({loading:true});
@@ -36,7 +46,7 @@ export class Newss extends Component {
     handlePrevClick= async()=>{
        
         this.state.page = this.state.page - 1;
-        let URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9476293ec7554b0aab4cc02acb02b670&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+        let URL = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=9476293ec7554b0aab4cc02acb02b670&page=${this.state.page}&pagesize=${this.props.pageSize}`;
 
         //for loading 
         this.setState({loading:true});
@@ -50,7 +60,7 @@ export class Newss extends Component {
     handleNexClick= async()=>{
         
         this.state.page = this.state.page + 1;
-        let URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=9476293ec7554b0aab4cc02acb02b670&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+        let URL = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=9476293ec7554b0aab4cc02acb02b670&page=${this.state.page}&pagesize=${this.props.pageSize}`;
 
         //for loading 
         this.setState({loading:true});
@@ -66,7 +76,7 @@ export class Newss extends Component {
     // let {pageSize} = this.props;
     return (
         <div className="container my-3 mx-4">
-            <h2 className='text-center'>NewsMonkey - Top Headlines</h2>
+            <h2 className='text-center my-3'>NewsMonkey - Top Headlines</h2>
 
             {/* bootstrap spinner */}
 
@@ -90,8 +100,8 @@ export class Newss extends Component {
             }))}
             </div>
             <div className="container d-flex justify-content-between">
-            <button disabled={this.state.page <= 1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}>&larr; Previous</button>
-            <button disabled={this.state.page*this.props.pageSize >= Math.ceil(this.state.totalResults)} type="button" className="btn btn-dark" onClick={this.handleNexClick}>Next &rarr; </button>
+            <button style={{cursor:'pointer'}} disabled={this.state.page <= 1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}>&larr; Previous</button>
+            <button style={{cursor:'pointer'}} disabled={this.state.page*this.props.pageSize >= Math.ceil(this.state.totalResults)} type="button" className="btn btn-dark" onClick={this.handleNexClick}>Next &rarr; </button>
             </div>
         </div>
     )
