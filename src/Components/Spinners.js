@@ -5,7 +5,7 @@ import loading from './Iphone-spinner-2.gif'
 export class Spinners extends Component {
   render() {
     return (
-      <div className='text-center'>
+      <div className='text-center my-3'>
         <img src={loading} alt="" />
       </div>
     )
