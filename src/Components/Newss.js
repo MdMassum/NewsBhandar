@@ -22,7 +22,7 @@ export class Newss extends Component {
     }
     constructor(props){
         super(props);
-        console.log("I am constructor");
+        // console.log("I am constructor");
         this.state = {
           articles: [],
           loading:false,
@@ -34,9 +34,9 @@ export class Newss extends Component {
     }
     
     async updateNews(){
-
+        
         this.props.setProgress(20);
-        const URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9476293ec7554b0aab4cc02acb02b670&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+        const URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
 
         //for loading 
         this.setState({loading:true});
@@ -51,7 +51,7 @@ export class Newss extends Component {
     fetchMoreData = async() =>{
         
         this.state.page = this.state.page+1;
-        const URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9476293ec7554b0aab4cc02acb02b670&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+        const URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
 
         //for loading 
         this.setState({loading:true});
@@ -71,7 +71,7 @@ export class Newss extends Component {
     // handlePrevClick= async()=>{
        
     //     // this.state.page = this.state.page - 1;
-    //     // let URL = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=9476293ec7554b0aab4cc02acb02b670&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+    //     // let URL = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
 
     //     // //for loading 
     //     // this.setState({loading:true});
