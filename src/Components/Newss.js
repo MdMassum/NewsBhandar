@@ -30,7 +30,7 @@ export class Newss extends Component {
           totalResults:0
         }
         
-        document.title = `${this.capitalizeFirstLetter(this.props.category)} - NewsBhandar`
+        document.title = `${this.capitalizeFirstLetter(this.props.category)? this.capitalizeFirstLetter(this.props.category) + " - " :""}NewsBhandar`
     }
     
     async updateNews(){
@@ -120,10 +120,10 @@ export class Newss extends Component {
             <div className="container">
             <div className="row">
             {/* if(this.state.articles != null){ */}
+            
             {(this.state.articles.map((element)=>{
 
                 return <div className="col-md-4 my-3">
-
                         <NewsItem  key={element.url?element.url:"/"} title={element.title?element.title.slice(0,40)+"...":""} description={element.description?`${element.description.slice(0,90)}....`:" "} imageUrl={!element.urlToImage?"https://images.moneycontrol.com/static-mcnews/2023/03/396556799.jpg":element.urlToImage} newsUrl={element.url} author={element.author?element.author:"unknown"} date={new Date(element.publishedAt).toGMTString()}/>
                     </div>
             }))}
