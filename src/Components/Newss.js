@@ -1,5 +1,4 @@
 import React, {useState,useEffect} from 'react'
-// import {useEffect, useState} from 'react'
 import NewsItem from './NewsItem'
 import Spinners from './Spinners';
 import PropTypes from 'prop-types'
@@ -51,6 +50,7 @@ const Newss = (props)=>{
     useEffect(() => {
         document.title = `${capitalizeFirstLetter(props.category)?capitalizeFirstLetter(props.category) + " - " :""}NewsBhandar`
         updateNews()
+        // eslint-disable-next-line
     }, [])
     
     // const handlePrevClick= async()=>{

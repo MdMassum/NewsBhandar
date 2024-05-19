@@ -19,7 +19,7 @@ export default function App() {
   // currentapi = Aok1h8X2AvLrpiJyzIGvTbRkc15DOaA0PpXmVlVxOrGA6qif (current website api)
 
   // for environment variable
-  // const apikey = process.env.REACT_APP_NEWS_API;
+  // const apikey = process.env.REACT_APP_API_KEY;
 
   const apikey = "9476293ec7554b0aab4cc02acb02b670"
   const[progress,setProgress] = useState(0)
