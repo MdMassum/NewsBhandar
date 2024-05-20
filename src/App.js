@@ -11,17 +11,12 @@ import LoadingBar from 'react-top-loading-bar'
 
 export default function App() {
 
-  // REACT_APP_NEWS_API = "9476293ec7554b0aab4cc02acb02b670";
-  // REACT_APP_NEWS_API= "851984fb857c4a9a812426559933c627";
-
-  // THENEWSAPI = https://api.thenewsapi.com/v1/news/top?api_token=uQL57C5xNcnPV1uB3cCwkHkoIiI7xsbpFd4CJxbO&locale=us&limit=3
-
-  // currentapi = Aok1h8X2AvLrpiJyzIGvTbRkc15DOaA0PpXmVlVxOrGA6qif (current website api)
-
   // for environment variable
-  // const apikey = process.env.REACT_APP_API_KEY;
-
-  const apikey = "9476293ec7554b0aab4cc02acb02b670"
+  const apikey = process.env.REACT_APP_API_URL;
+  console.log(apikey);
+  if(!apikey){
+    console.log("no api");
+  }
   const[progress,setProgress] = useState(0)
   return (
     <>
