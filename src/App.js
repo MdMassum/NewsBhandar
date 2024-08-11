@@ -13,10 +13,7 @@ export default function App() {
 
   // for environment variable
   const apikey = process.env.REACT_APP_API_URL;
-  console.log(apikey);
-  if(!apikey){
-    console.log("no api");
-  }
+ 
   const[progress,setProgress] = useState(0)
   return (
     <>
@@ -32,8 +29,7 @@ export default function App() {
       />
         <Routes>
           {/* since same news component is render everytime so we need to give unique key to everyone */}
-          <Route exact path="/" element={<Newss setProgress={setProgress} apikey={apikey} key="home" pageSize={9} country={"in"} category={""}/>}/>
-          <Route exact path="/home" element={<Newss setProgress={setProgress} apikey={apikey} key="home" pageSize={9} country={"in"} category={""}/>}/>
+          <Route exact path="/home" element={<Newss setProgress={setProgress} apikey={apikey} key="home" pageSize={9} country={"in"} category={"general"}/>}/>
           <Route exact path="/business" element={<Newss setProgress={setProgress} apikey={apikey} key="business"  pageSize={9} country={"in"} category={"business"}/>}/>
           <Route exact path="/entertainment" element={<Newss setProgress={setProgress} apikey={apikey} key="entertainment" pageSize={9} country={"in"} category={"entertainment"}/>}/>
           <Route exact path="/general" element={<Newss setProgress={setProgress} apikey={apikey} key="general" pageSize={9} country={"in"} category={"general"}/>}/>
